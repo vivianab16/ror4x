@@ -52,4 +52,24 @@ En caso de que no lo desee clonar sino hacerlo desde cero en forma local en su t
 
 Ahora puede dar inicio a realizar los scaffolds y aplicar las migraciones de los mismos.
 
+*------------------------------------------------------------------------
 
+Nota: Deseamos adicionarle estilos a nuestro proyecto por tanto utilizaremos Bootstrap como framework de CSS y la gema Simple_form para facilitar nuestro trabajo con los formularios, 
+para esto deberan realizar lo siguiente:
+
+1- Adicione las siguientes gemas en su Gemfile y guarde los cambios
+   gem 'simple_form'
+   gem 'twitter-bootstrap-rails'
+   gem 'less-rails'
+
+2- Instale las gemas parado en la raiz de su proyecto dentro de su gemset de su aplicación así:
+   $ bundle install
+
+3- Instale los archivos requeridos para su app tanto de Simple_form como de Bootstrap
+   $ rails g simple_form:install --bootstrap
+   $ rails g bootstrap:install
+
+Nota: Este paso solo se hace una vez, tenga en cuenta que para scaffold que desee realizar 
+      debe hacerlo con el parametro --skip-stylesheets al final, de lo contrario, sobrescribirá los css de bootstrap
+
+   Ejemplo: rails g scaffold nombre_modelo campos:tipo_campos  --skip-stylesheets
