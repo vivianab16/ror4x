@@ -1,10 +1,10 @@
 class EngineersController < ApplicationController
-  before_action :set_engineer, only: [:show, :edit, :update, :destroy]
+  before_action :set_engineer, only: [:show, :edit, :update, :destroy, :index, :new, :create]
 
   # GET /engineers
   # GET /engineers.json
   def index
-    @engineers = Engineer.all
+    @engineers = @proyect.Engineer.all
   end
 
   # GET /engineers/1
@@ -25,10 +25,10 @@ class EngineersController < ApplicationController
   # POST /engineers.json
   def create
     @engineer = Engineer.new(engineer_params)
-
+    @engineer.proyect_id = @proyect.id
     respond_to do |format|
       if @engineer.save
-        format.html { redirect_to @engineer, notice: 'Engineer was successfully created.' }
+        format.html { redirect_to proyect_engineers_path(@proyect), notice: 'Ingeniero se ha creado satisfactoriamente.' }
         format.json { render :show, status: :created, location: @engineer }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class EngineersController < ApplicationController
   def update
     respond_to do |format|
       if @engineer.update(engineer_params)
-        format.html { redirect_to @engineer, notice: 'Engineer was successfully updated.' }
+        format.html { redirect_to proyect_engineers_path(@proyect), notice: 'Ingeniero ha sido actualizado satisfactoriamente.' }
         format.json { render :show, status: :ok, location: @engineer }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class EngineersController < ApplicationController
   def destroy
     @engineer.destroy
     respond_to do |format|
-      format.html { redirect_to engineers_url, notice: 'Engineer was successfully destroyed.' }
+      format.html { redirect_to proyect_engineers_url(@proyect), notice: 'Ingeniero ha sido eliminado satisfactoriamente.' }
       format.json { head :no_content }
     end
   end
@@ -64,6 +64,7 @@ class EngineersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_engineer
+      @proyect = Proyect.find(params[:proyect_id])
       @engineer = Engineer.find(params[:id])
     end
 
