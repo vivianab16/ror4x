@@ -18,7 +18,7 @@
   <%= link_to t('.back', :default => t("helpers.links.Atras")),
               proyects_path, :class => 'btn'  %>
   <%= link_to t('.edit', :default => t("helpers.links.editar")),
-              edit_proyect_engineer(@proyect,engineer), :class => 'btn' %>
+              edit_proyects_engineer(@proyect,engineer), :class => 'btn' %>
   <%= link_to t('.destroy', :default => t("helpers.links.Eliminar")),
               proyect_engineer_path(@proyect,engineer),
               :method => 'delete',
